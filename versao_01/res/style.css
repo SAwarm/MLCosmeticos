@@ -1,0 +1,171 @@
+/* -- GLOBAL -- */
+* {
+	margin: 0;
+	padding: 0;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+.template {
+	display: none; !important;
+}
+/* -- Cabeçalho -- */
+nav #anuncio {
+	height: 1rem;
+	background: #AF897E;
+}
+#head {
+	display: flex;
+	align-items: center;
+	padding: 1rem 0;
+	background: hsl(17.3, 30.1%, 75.2%);
+}
+#head .logo {
+	margin: 0 1rem;
+	font: 42pt "Arial";
+	color: white;
+}
+#head .pesquisa {
+	flex-grow: 1;
+	height: 3rem;
+	margin: 0 1rem;
+	padding: 0 0 0 10px;
+	font: 13pt 'Arial';
+	border-radius: 16px;
+	border: none;
+}
+#head .pesquisa:focus {
+	outline: none;
+}
+#head .links {
+	font: 12pt "Arial";
+	margin: 0 1rem;
+	color: white;
+}
+#head .links a {
+	margin: 0 4px;
+}
+#head-links {
+	background: hsl(25.7, 19.4%, 28.2%);
+}
+#head-links ul {
+	display: flex;
+	list-style: none;
+	padding: 1rem 1rem;
+}
+#head-links li {
+	position: relative;
+	flex-grow: 1;
+	padding: 0.5rem 0.5rem;
+	margin: 0 1rem;
+	text-align: center;
+	font: 12pt "Arial";
+	color: white;
+}
+#head-links li:hover {
+	background-color: white;
+	border-radius: 16px;
+	color: hsl(25.7, 19.4%, 28.2%);
+}
+#head-links li .menu {
+	display: none;
+	position: absolute;
+	top: 32px;
+	left: 0px;
+	flex-direction: column;
+	align-items: flex-start;
+	border: solid 3px hsl(25.7, 19.4%, 28.2%);
+	border-radius: 8px;
+	padding: 0.7rem 1rem;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+	background: white;
+}
+#head-links li .menu a {
+	margin: 4px 0;
+	white-space: nowrap;
+}
+#head-links li:hover .menu {
+	display: flex;
+}
+/* -- Principal -- */
+main {
+	margin: 0 3rem;
+}
+main #carrossel img {
+	width: 100%;
+}
+#produtos h1 {
+	margin: 2rem 0;
+	text-align: center;
+	font: 24pt "Arial";
+	color: #AF897E;
+}
+#produtos .cards {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+
+.card-produto {
+	margin: 1rem;
+	width: 250px;
+	height: 500px;
+	
+	border: solid 1px #D5BAAE;
+	box-shadow: 6px 6px 0 #9A7E74;
+}
+.card-produto img {
+	width: 100%;
+}
+.card-produto span {
+	display: block;
+	margin: 1rem 0;
+	text-align: center;
+	font: 10pt 'Arial';
+}
+/* -- Rodapé -- */
+#rodape {
+	height: 100vh;
+}
+#contato {
+	padding: 4rem;
+	font: 20pt 'Arial';
+	text-align: center;
+	color: white;
+	background: #D5BAAE;
+}
+#contato form {
+	margin: 0.5rem 0 0 0;
+}
+#contato input {
+	padding: 1rem;
+	border: none;
+	border-radius: 4px;
+}
+#rodape {
+	margin: 0 1rem;
+}
+#rodape .redes {
+	margin: 0.5rem 0.5rem;
+}
+#rodape .listas {
+	margin: 2rem 0;
+	display: flex;
+	justify-content: center;
+	color: #9A7E74;
+}
+#rodape .listas ul {
+	margin: 0 1rem;
+	font: 14pt "Arial";
+	list-style: none;
+}
+#rodape .listas ul li:first-child {
+	font-weight: bold;
+	margin: 0 0 0.5rem 0;
+}
+#rodape-inferior {
+	font: 10pt 'Arial';
+	color: gray;
+}

@@ -41,34 +41,33 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-						<input class="input100" type="text" name="email">
-						<span class="focus-input100" data-placeholder="E-mail"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<span class="btn-show-pass">
-							<i class="zmdi zmdi-eye"></i>
+						<span class="login100-form p-b-26">
+							Email:
 						</span>
-						<input class="input100" type="password" name="pass">
-						<span class="focus-input100" data-placeholder="Senha"></span>
+						<input class="email1 input100" type="text" name="email">
 					</div>
 
+					<div class="wrap-input100 validate-input" data-validate="Enter password">	
+						<span class="login100-form p-b-26">
+							Senha:
+						</span>
+						<input class="senha input100" type="password" name="pass">
+					</div>
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
-								Login
+							<button class="btn-entrar login100-form-btn">
+								Entrar
 							</button>
 						</div>
 					</div>
-				
 				</form>
 				<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
+							<a href="cadastro.php" class="login100-form-btn">
 								Criar Conta
-							</button>
+							</a>
 						</div>
 					</div>
 			</div>
@@ -96,4 +95,32 @@
 	<script src="res/js/main.js"></script>
 
 </body>
+
+<script>
+
+	$(".btn-entrar").click(function(e){
+		e.preventDefault();
+        $.ajax({
+            url: 'backend/login.php',
+            data: {email: $('.email1').val(), senha: $('.senha').val()},
+            method: 'POST',
+            type: 'POST',
+            success: function(data){
+               if(data == "admin"){
+					alert("Admin logado com sucesso!");
+					$(location).prop('href', 'admin/index.html')
+			   }else if(data == "Logado com sucesso!"){
+					alert(data);
+					$(location).prop('href', 'home.php')
+			   }else if(data == "Email ou Senha incorretos!"){
+					alert(data);
+			   }else{
+				   alert("Erro!");
+			   }
+            }
+        });
+    })
+
+</script>
+
 </html>

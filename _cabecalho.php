@@ -4,9 +4,7 @@
 		<a href="/"><img src="logo.png" alt="logo" height="100px" width="100%"></a>
 		<input class="pesquisa" placeholder="Busco por"></input>
 		<span class="links">
-			<a href="#">Ajuda</a>
 			<a href="#">Contatos</a>
-			<a href="#">Bananas</a>
 			<a href="#">Carrinho</a>
 		</span>
 	</div>
@@ -78,13 +76,6 @@
 				</div>
 			</li>
 			<li>
-				<a href="argila.php">argila rosa</a>
-				<div class="menu">
-					<a href="/argila/facial.php">Argila rosa facial</a>
-					<a href="/argila/capilar.php">Argila rosa capilar</a>
-				</div>
-			</li>
-			<li>
 				<a href="kits.php">kits e acessórios</a>
 				<div class="menu">
 					<a href="/kits/presentes.php">Kits e presentes</a>
@@ -92,27 +83,6 @@
 					<a href="/kits/brindes.php">Brindes</a>
 					<a href="/kits/combo_base.php">Kit combo base e corretivo feels</a>
 					<a href="/kits/mães">kits dia das mães</a>
-				</div>
-			</li>
-			<li>
-				<a href="colecoes.php">coleções</a>
-				<div class="menu">
-					<a href="/colecoes/feels.php">Linha feels</a>
-					<a href="/colecoes/shine.php">Linha shine</a>
-					<a href="/colecoes/ice.php">Linha ice</a>
-					<a href="/colecoes/care.php">Linha care</a>
-					<a href="/colecoes/skin.php">Linha ruby skin</a>
-				</div>
-			</li>
-			<li>
-				<a href="lancamentos.php">lançamentos</a>
-				<div class="menu">
-					<a href="/colecoes/shine.php">Linha shine</a>
-					<a href="/colecoes/feels.php">Linha feels</a>
-					<a href="/olhos/sombras.php">Paleta de sombras</a>
-					<a href="/colecoes/care.php">Linha care</a>
-					<a href="/facial/protecao.php">Linha ruby skin proteção urbana</a>
-					<a href="/lancamentos/gel.php">Gel volumizador de sobrancelha</a>
 				</div>
 			</li>
 		</ul>

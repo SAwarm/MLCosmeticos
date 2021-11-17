@@ -32,7 +32,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" id="form-cadastro" action="/.">
+				<form class="login100-form validate-form" id="form-cadastro">
 					<span class="login100-form-title p-b-26">
 						Cadastre-se
 					</span>
@@ -181,6 +181,7 @@
 <script>
 
 	$('#form-cadastro').submit(function (e) {
+		e.preventDefault();
 		nome = $('.nome').val();
 		email = $('.email').val();
 		telefone = $('.telefone').val();
@@ -191,13 +192,26 @@
 		rua = $('.rua').val();
 		numero = $('.numero').val();
 		cep = $('.cep').val();
+		estado = $('.estado').val()
 		
 		if(nome == "" || email == "" || telefone == "" || senha == "" || confirm_senha == "" || cidade == "" ||
 		bairro == "" || rua == "" || numero == "" || cep == ""){
-			e.preventDefault();
 			alert('Preencha todos os campos!')
+		}else if(senha != confirm_senha){
+			alert('Verifique a sua senha!')
 		}else{
-			
+			$.ajax({
+				url: 'backend/cadastro.php',
+				data: {
+					nome: nome, email: email, telefone: telefone, senha: senha, cidade: cidade, 
+					bairro: bairro, rua: rua, numero: numero, cep: cep, estado: estado
+				},
+				method: 'POST',
+				type: 'POST',
+				success: function(data){
+					
+				}
+        	});
 		}
 	});
 

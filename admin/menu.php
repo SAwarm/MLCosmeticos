@@ -131,10 +131,17 @@
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pedidos.php"
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pedidos_pendentes.php"
                                     aria-expanded="false">
                                     <i class="fas fa-chart-bar" aria-hidden="true"></i>
-                                    <span class="hide-menu">Pedidos</span>
+                                    <span class="hide-menu">Pedidos Pendentes</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pedidos_confirmados.php"
+                                    aria-expanded="false">
+                                    <i class="fas fa-chart-bar" aria-hidden="true"></i>
+                                    <span class="hide-menu">Pedidos Confirmados</span>
                                 </a>
                             </li>
                             <li class="text-center p-20 upgrade-btn">

@@ -34,12 +34,13 @@
                                     <thead>
                                         <tr>
                                             <th class="border-top-0">Id</th>
+                                            <th class="border-top-0">Nome</th>
                                             <th class="border-top-0">Descrição</th>
                                             <th class="border-top-0">Preço</th>
                                             <th class="border-top-0">Opções</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="produtosTable">
                                     </tbody>
                                 </table>
                             </div>
@@ -228,8 +229,34 @@
         $('#modal-dimensoes').modal('show');
     })
 
-    function loadTable(){
+    $(document).ready(function() {
+        loadTableProdutos();
+    });
 
+    function loadTableProdutos(){
+        $.ajax({
+            url: 'backend/select_produtos.php',
+            method: 'POST',
+            success: function(data){
+                cols = "";
+                 if(data != "null"){
+
+                    jq_json_obj = $.parseJSON(data);
+                    cont = jq_json_obj.length
+                    for (x = 0; x < cont; x++){
+                        cols += '<tr><td scope="row">'+jq_json_obj[x][0]+'</td>';
+                        cols += '<td>'+jq_json_obj[x][1]+'</td>';
+                        cols += '<td>'+jq_json_obj[x][2]+'</td>';
+                        cols += '<td>'+jq_json_obj[x][3]+'</td>';
+                        cols += '<td><a type="button" href="#" data-id="'+jq_json_obj[x][0]+'" id="btn-edit-produto" style="margin-right: 10px;" class="btn btn-success btn-edit-turma"><i class="far fa-edit"></i></a>'+
+                                    '<a type="button" href="#" data-id="'+jq_json_obj[x][0]+'" class="btn btn-danger btn-exclude-produto"><i class="fas fa-times-circle"></i></a></td></tr>';
+                        $("#produtosTable").html(cols);
+                    }
+                 }else{
+                     alert("erro");
+                 }
+            }
+        });
     }
 
     $(".btn-add-produto").click(function(e){
@@ -299,6 +326,7 @@
             success: function(data){
                  if(data == "true"){
                     alert("Salvo com sucesso!")
+                    loadTableProdutos();
                  }else{
                     alert("Erro ao salvar produto!")
                  }

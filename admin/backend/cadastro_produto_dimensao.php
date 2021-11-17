@@ -24,6 +24,7 @@
     $marca = $_POST['marca'];
     $obs_produto = $_POST['observacao'];
     $tipo = $_POST['tipo'];
+    $new_name = "";
 
     if(isset($_FILES['file-0']))
     {

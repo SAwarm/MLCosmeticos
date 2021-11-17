@@ -32,7 +32,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" id="form-cadastro" action="/.">
 					<span class="login100-form-title p-b-26">
 						Cadastre-se
 					</span>
@@ -144,7 +144,7 @@
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
+							<button class="login100-form-btn btn-cadastro" id="submit">
 								Cadastrar
 							</button>
 						</div>
@@ -177,3 +177,28 @@
 
 </body>
 </html>
+
+<script>
+
+	$('#form-cadastro').submit(function (e) {
+		nome = $('.nome').val();
+		email = $('.email').val();
+		telefone = $('.telefone').val();
+		senha = $('.senha').val();
+		confirm_senha = $('.confirm-senha').val();
+		cidade = $('.cidade').val();
+		bairro = $('.bairro').val();
+		rua = $('.rua').val();
+		numero = $('.numero').val();
+		cep = $('.cep').val();
+		
+		if(nome == "" || email == "" || telefone == "" || senha == "" || confirm_senha == "" || cidade == "" ||
+		bairro == "" || rua == "" || numero == "" || cep == ""){
+			e.preventDefault();
+			alert('Preencha todos os campos!')
+		}else{
+			
+		}
+	});
+
+</script>

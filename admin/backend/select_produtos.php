@@ -5,7 +5,7 @@
     if(!empty($_POST['edit'])){
         $id = $_POST['id'];
 
-        $querySelect = "SELECT * from produto inner join dimensoes on produto.cod = dimensoes.cod where produto.cod='$id'";
+        $querySelect = "SELECT * from produto inner join dimensoes on produto.dimensoes_cod = dimensoes.cod where produto.cod='$id'";
 
         $result = mysqli_query($connection, $querySelect);
 

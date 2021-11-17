@@ -227,6 +227,7 @@
         $('#modal-produtos').modal('show');
         $('.imagem-document').html('Imagem');
         $('.btn-add-produto').html('Adicionar');
+        $('#exampleModalLabe2l').html('Cadastro Novo Produto');
     })
     $(".dimensoes").click(function(e){
         $('#modal-dimensoes').modal('show');
@@ -235,10 +236,12 @@
     $(document).on('click','.btn-edit-produto', function(){
         resetCampos();
         id = $(this).attr('data-id');
+        id_produto_dimensao = $(this).attr('data-id-dimensao');
         $('.btn-add-produto').attr('data-id', id);
+        $('.btn-add-produto').attr('data-id-dimensao', id_produto_dimensao);
         $.ajax({
             url: 'backend/select_produtos.php',
-            data: {edit: true, id: id},
+            data: {edit: true, id: id, id_produto_dimensao: id_produto_dimensao},
             method: 'POST',
             success: function(data){
                 jq_json_obj = $.parseJSON(data);
@@ -255,8 +258,8 @@
                 $('.altura').val(jq_json_obj[0]['altura']);
                 $('.largura').val(jq_json_obj[0]['largura']);
                 $('.profundidade').val(jq_json_obj[0]['profundidade']);
-                $('.observacao').val(jq_json_obj[0]['obs']);
-                $('.observacao-dimensao').val(jq_json_obj[0][8]);
+                $('.observacao').val(jq_json_obj[0][8]);
+                $('.observacao-dimensao').val(jq_json_obj[0]['obs']);
                 $('.marca').val(jq_json_obj[0]['marca']);
                 $('.cor').val(jq_json_obj[0]['cor']);
 
@@ -300,8 +303,8 @@
                         cols += '<td>'+jq_json_obj[x][1]+'</td>';
                         cols += '<td>'+jq_json_obj[x][2]+'</td>';
                         cols += '<td>'+jq_json_obj[x][3]+'</td>';
-                        cols += '<td><a type="button" href="#" data-id="'+jq_json_obj[x][0]+'" id="btn-edit-produto" style="margin-right: 10px;" class="btn btn-success btn-edit-produto"><i class="far fa-edit"></i></a>'+
-                                    '<a type="button" href="#" data-id="'+jq_json_obj[x][0]+'" class="btn btn-danger btn-exclude-produto"><i class="fas fa-times-circle"></i></a></td></tr>';
+                        cols += '<td><a type="button" href="#" data-id-dimensao="'+jq_json_obj[x][7]+'" data-id="'+jq_json_obj[x][0]+'" id="btn-edit-produto" style="margin-right: 10px;" class="btn btn-success btn-edit-produto"><i class="far fa-edit"></i></a>'+
+                                    '<a type="button" href="#" data-id-dimensao="'+jq_json_obj[x][7]+'" data-id="'+jq_json_obj[x][0]+'" class="btn btn-danger btn-exclude-produto"><i class="fas fa-times-circle"></i></a></td></tr>';
                         $("#produtosTable").html(cols);
                     }
                  }else{
@@ -325,6 +328,9 @@
         peso = $('.peso').val();
         observacao_dimensao = $('.observacao-dimensao').val();
 
+        id_produto = $('.btn-add-produto').attr('data-id');
+        id_produto_dimensao = $('.btn-add-produto').attr('data-id-dimensao');
+
         tipo = $('.tipo').val();
 
 
@@ -332,7 +338,7 @@
         if(nome == ""){
             msg+= "Nome ";
         }
-        if(imagem == ""){
+        if(imagem == "" && id_produto == ""){
             msg+= "Imagem "
         }
         if(preco == ""){
@@ -367,9 +373,14 @@
         data.append('peso', peso);
         data.append('tipo', tipo);
 
-        if($('.btn-add-produto').html() == "Salvar"){
+        if(id_produto != "" && id_produto_dimensao != ""){
+            data.append('id_produto', id_produto);
+            data.append('id_dimensao', id_produto_dimensao);
+        }
+
+        if($('.btn-add-produto').html() == "Salvar Alterações"){
             jQuery.ajax({
-                url: 'backend/cadastro_produto_dimensao.php',
+                url: 'backend/update_produto_dimensao.php',
                 data: data,
                 cache: false,
                 contentType: false,
@@ -378,17 +389,19 @@
                 type: 'POST', // For jQuery < 1.9
                 success: function(data){
                     if(data == "true"){
-                        alert("Salvo com sucesso!")
+                        alert(data)
                         $('#modal-produtos').modal('hide');
                         loadTableProdutos();
                     }else{
-                        alert("Erro ao salvar produto!")
+                        alert(data)
+                        $('#modal-produtos').modal('hide');
+                        loadTableProdutos();
                     }
                 }
             });
         }else{
             jQuery.ajax({
-                url: 'backend/update_produto_dimensao.php',
+                url: 'backend/cadastro_produto_dimensao.php',
                 data: data,
                 cache: false,
                 contentType: false,

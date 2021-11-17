@@ -201,6 +201,30 @@
                                 </div>
                             </div>
                         </div-->
+                        <div class="modal fade" id="modal-exclusao" style="background-color: rgba(0,0,0,0.5);" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabe2l">Excluir Produto</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body message-modal" style="color: black">
+                                    <form>
+                                        <div class="form-group turma-document-div">
+                                            <h5 class="modal-title" id="exampleModalLabe2l">Deseja realmente excluir esse produto?</h5>
+                                        </div>
+                                    </form>
+                                    <br>
+                                </div>
+                                <div class="modal-footer">
+                                    <br>
+                                    <button type="button" class="btn btn-danger btn-fill btn-exclude" style="cursor: pointer;">Excluir</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
@@ -231,6 +255,29 @@
     })
     $(".dimensoes").click(function(e){
         $('#modal-dimensoes').modal('show');
+    })
+
+    $(document).on('click','.btn-exclude-produto', function(){
+        id_produto = $(this).attr('data-id');
+        id_dimensao = $(this).attr('data-id-dimensao');
+        $('.btn-exclude').attr('data-id', id_produto);
+        $('.btn-exclude').attr('data-id-dimensao', id_dimensao);
+        $('#modal-exclusao').modal('show');
+    })
+
+    $(document).on('click','.btn-exclude', function(){
+        id_produto = $(this).attr('data-id');
+        id_dimensao = $(this).attr('data-id-dimensao');
+        $.ajax({
+            url: 'backend/exclude_produto_dimensao.php',
+            data: {id_produto: id_produto, id_dimensao: id_dimensao},
+            method: 'POST',
+            success: function(data){
+                alert(data)
+                $('#modal-exclusao').modal('hide');
+                loadTableProdutos();
+            }
+        });
     })
 
     $(document).on('click','.btn-edit-produto', function(){

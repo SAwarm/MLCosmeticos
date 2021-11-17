@@ -100,8 +100,8 @@
                         <input type="text" class="form-control preco" id="preco">
                     </div>
                     <div class="form-group nome-document-div">
-                        <label for="turma-document" class="col-form-label">Imagem:</label>
-                        <input type="file" class="form-control imagem" id="imagem">
+                        <label for="imagem-document" class="col-form-label imagem-document">Imagem:</label>
+                        <input type="file" class="form-control imagem" id="imagem" title=" ">
                     </div>
                     <div class="form-group nome-document-div">
                         <label for="turma-document" class="col-form-label">Tipo:</label>
@@ -223,15 +223,67 @@
 
 <script>
     $(".btn-cadastro").click(function(e){
+        resetCampos();
         $('#modal-produtos').modal('show');
+        $('.imagem-document').html('Imagem');
+        $('.btn-add-produto').html('Adicionar');
     })
     $(".dimensoes").click(function(e){
         $('#modal-dimensoes').modal('show');
     })
 
+    $(document).on('click','.btn-edit-produto', function(){
+        resetCampos();
+        id = $(this).attr('data-id');
+        $('.btn-add-produto').attr('data-id', id);
+        $.ajax({
+            url: 'backend/select_produtos.php',
+            data: {edit: true, id: id},
+            method: 'POST',
+            success: function(data){
+                jq_json_obj = $.parseJSON(data);
+                $('#modal-produtos').modal('show');
+                $('.nome').val(jq_json_obj[0]['nome']);
+                $('.descricao').val(jq_json_obj[0]['descricao']);
+                $('.preco').val(jq_json_obj[0]['preco']);
+                if(jq_json_obj[0]['imagem'] != ""){
+                    $('.imagem-document').html('Alterar imagem');
+                }else{
+                    $('.imagem-document').html('Imagem');
+                }
+                $('.peso').val(jq_json_obj[0]['peso']);
+                $('.altura').val(jq_json_obj[0]['altura']);
+                $('.largura').val(jq_json_obj[0]['largura']);
+                $('.profundidade').val(jq_json_obj[0]['profundidade']);
+                $('.observacao').val(jq_json_obj[0]['obs']);
+                $('.observacao-dimensao').val(jq_json_obj[0][8]);
+                $('.marca').val(jq_json_obj[0]['marca']);
+                $('.cor').val(jq_json_obj[0]['cor']);
+
+                $('.btn-add-produto').html('Salvar Alterações');
+                $('#exampleModalLabe2l').html('Editando Produto');
+            }
+        });
+    });
+
     $(document).ready(function() {
         loadTableProdutos();
     });
+
+    function resetCampos(){
+        $('.nome').val('');
+        $('.imagem').val('');
+        $('.preco').val('');
+        $('.descricao').val('');
+        $('.cor').val('');
+        $('.marca').val('');
+        $('.observacao').val('');
+        $('.altura').val('');
+        $('.largura').val('');
+        $('.profundidade').val('');
+        $('.peso').val('');
+        $('.observacao-dimensao').val('');
+    }
 
     function loadTableProdutos(){
         $.ajax({
@@ -248,7 +300,7 @@
                         cols += '<td>'+jq_json_obj[x][1]+'</td>';
                         cols += '<td>'+jq_json_obj[x][2]+'</td>';
                         cols += '<td>'+jq_json_obj[x][3]+'</td>';
-                        cols += '<td><a type="button" href="#" data-id="'+jq_json_obj[x][0]+'" id="btn-edit-produto" style="margin-right: 10px;" class="btn btn-success btn-edit-turma"><i class="far fa-edit"></i></a>'+
+                        cols += '<td><a type="button" href="#" data-id="'+jq_json_obj[x][0]+'" id="btn-edit-produto" style="margin-right: 10px;" class="btn btn-success btn-edit-produto"><i class="far fa-edit"></i></a>'+
                                     '<a type="button" href="#" data-id="'+jq_json_obj[x][0]+'" class="btn btn-danger btn-exclude-produto"><i class="fas fa-times-circle"></i></a></td></tr>';
                         $("#produtosTable").html(cols);
                     }
@@ -295,7 +347,7 @@
         }
 
         var data = new FormData();
-            jQuery.each(jQuery('.imagem')[0].files, function(i, file) {
+        jQuery.each(jQuery('.imagem')[0].files, function(i, file) {
             data.append('file-'+i, file);
         });
 
@@ -315,23 +367,45 @@
         data.append('peso', peso);
         data.append('tipo', tipo);
 
-        jQuery.ajax({
-            url: 'backend/cadastro_produto_dimensao.php',
-            data: data,
-            cache: false,
-            contentType: false,
-            processData: false,
-            method: 'POST',
-            type: 'POST', // For jQuery < 1.9
-            success: function(data){
-                 if(data == "true"){
-                    alert("Salvo com sucesso!")
-                    loadTableProdutos();
-                 }else{
-                    alert("Erro ao salvar produto!")
-                 }
-            }
-        });
+        if($('.btn-add-produto').html() == "Salvar"){
+            jQuery.ajax({
+                url: 'backend/cadastro_produto_dimensao.php',
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                method: 'POST',
+                type: 'POST', // For jQuery < 1.9
+                success: function(data){
+                    if(data == "true"){
+                        alert("Salvo com sucesso!")
+                        $('#modal-produtos').modal('hide');
+                        loadTableProdutos();
+                    }else{
+                        alert("Erro ao salvar produto!")
+                    }
+                }
+            });
+        }else{
+            jQuery.ajax({
+                url: 'backend/update_produto_dimensao.php',
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                method: 'POST',
+                type: 'POST', // For jQuery < 1.9
+                success: function(data){
+                    if(data == "true"){
+                        alert("Salvo com sucesso!")
+                        $('#modal-produtos').modal('hide');
+                        loadTableProdutos();
+                    }else{
+                        alert("Erro ao salvar produto!")
+                    }
+                }
+            });
+        }
         
     })
 </script>

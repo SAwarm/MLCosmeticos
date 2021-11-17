@@ -147,22 +147,6 @@
                         <input type="file" class="form-control imagem" id="imagem">
                     </div>
                     <div class="form-group nome-document-div">
-                        <label for="turma-document" class="col-form-label">Cor:</label>
-                        <input type="text" class="form-control cor" id="cor">
-                    </div>
-                    <div class="form-group nome-document-div">
-                        <label for="turma-document" class="col-form-label">Marca:</label>
-                        <input type="text" class="form-control marca" id="marca">
-                    </div>
-                    <div class="form-group nome-document-div">
-                        <label for="turma-document" class="col-form-label">Dimensões:</label>
-                        <a class="btn btn-primary btn-fill form-control dimensoes" id="dimensoes">Adicionar Dimensões</a>
-                    </div>
-                    <div class="form-group nome-document-div">
-                        <label for="turma-document" class="col-form-label">Observação:</label>
-                        <input type="text" class="form-control observacao" id="observacao">
-                    </div>
-                    <div class="form-group nome-document-div">
                         <label for="turma-document" class="col-form-label">Tipo:</label>
                         <select class="form-control tipo" id="tipo">
                             <option value="rosto">Rosto</option>
@@ -172,6 +156,41 @@
                             <option value="linha_facial">Linha facial</option>
                             <option value="kits_acessorios">Kits e Acessórios</option>
                         </select>
+                    </div>
+                    <div class="form-group nome-document-div">
+                        <label for="turma-document" class="col-form-label">Cor:</label>
+                        <input type="text" class="form-control cor" id="cor">
+                    </div>
+                    <div class="form-group nome-document-div">
+                        <label for="turma-document" class="col-form-label">Marca:</label>
+                        <input type="text" class="form-control marca" id="marca">
+                    </div>
+                    <div class="form-group nome-document-div">
+                        <label for="turma-document" class="col-form-label">Observação:</label>
+                        <input type="text" class="form-control observacao" id="observacao">
+                    </div>
+                    <div class="form-group nome-document-div">
+                        <label for="turma-document" class="col-form-label">Dimensões:</label>
+                        <div class="form-group turma-document-div">
+                                            <label for="turma-document" class="col-form-label">Altura:</label>
+                                            <input type="text" class="form-control altura" id="altura">
+                                        </div>
+                                        <div class="form-group turma-document-div">
+                                            <label for="turma-document" class="col-form-label">Largura:</label>
+                                            <input type="text" class="form-control largura" id="largura">
+                                        </div>
+                                        <div class="form-group turma-document-div">
+                                            <label for="turma-document" class="col-form-label">Peso:</label>
+                                            <input type="text" class="form-control peso" id="peso">
+                                        </div>
+                                        <div class="form-group turma-document-div">
+                                            <label for="turma-document" class="col-form-label">Profundidade:</label>
+                                            <input type="text" class="form-control profundidade" id="profundidade">
+                                        </div>
+                                        <div class="form-group turma-document-div">
+                                            <label for="turma-document" class="col-form-label">Observação da Dimensão:</label>
+                                            <input type="text" class="form-control observacao-dimensao" id="observacao-dimensao">
+                                        </div>
                     </div>
                 </form>
                 <br>
@@ -184,7 +203,7 @@
         </div>
     </div>
 
-                        <div class="modal fade" id="modal-dimensoes" style="background-color: rgba(0,0,0,0.5);" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <!--div class="modal fade" id="modal-dimensoes" style="background-color: rgba(0,0,0,0.5);" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                 <div class="modal-header">
@@ -224,7 +243,7 @@
                                 </div>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->

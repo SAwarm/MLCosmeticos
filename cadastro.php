@@ -40,33 +40,105 @@
 						<img src="logo.png" alt="logo" width="100px" height="50%" class="foto">
 					</span>
 
-                    <div class="wrap-input100 validate-input" data-validate = "Digite um nome">
-						<input class="input100" type="text" name="nome">
-						<span class="focus-input100" data-placeholder="Nome"></span>
+                    <div class="wrap-input100 validate-input">
+						<span class="login100-form">
+							Nome:
+						</span>
+						<input class="input100 nome" type="text" name="nome">
 					</div>
-                    <div class="wrap-input100 validate-input" data-validate = "Digite um número válido">
-						<input class="input100" type="tel" name="telefone">
-						<span class="focus-input100" data-placeholder="Telefone"></span>
+                    <div class="wrap-input100 validate-input">
+						<span class="login100-form">
+							Email:
+						</span>
+						<input class="input100 email" type="tel" name="email">
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Digite um email válido">
-						<input class="input100" type="text" name="email">
-						<span class="focus-input100" data-placeholder="E-mail"></span>
+					<div class="wrap-input100 validate-input" >
+						<span class="login100-form">
+							Telefone:
+						</span>
+						<input class="input100 telefone" type="text" name="telefone">
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate="Digite uma senha">
-						<span class="btn-show-pass">
-							<i class="zmdi zmdi-eye"></i>
+					<div class="wrap-input100 validate-input" >
+						<span class="login100-form">
+							Senha:
 						</span>
-						<input class="input100" type="password" name="pass">
-						<span class="focus-input100" data-placeholder="Senha"></span>
+						<input class="input100 senha" type="password" name="senha">
 					</div>
-                    <div class="wrap-input100 validate-input" data-validate="As senhas não coincidem">
-						<span class="btn-show-pass">
-							<i class="zmdi zmdi-eye"></i>
+                    <div class="wrap-input100 validate-input" >
+						<span class="login100-form">
+							Confirme a Sua Senha:
 						</span>
-						<input class="input100" type="password" name="pass">
-						<span class="focus-input100" data-placeholder="Confirme sua Senha"></span>
+						<input class="input100 confirm-senha" type="password" name="confirm-senha">
+					</div>
+
+					<div class="wrap-input100 validate-input" >
+						<span class="login100-form">
+							Estado:
+						</span>
+						<select class="input100 estado" type="text" name="estado"> 
+							<option value="AC">AC</option>
+							<option value="AL">AL</option>
+							<option value="AM">AM</option>
+							<option value="AP">AP</option>
+							<option value="BA">BA</option>
+							<option value="CE">CE</option>
+							<option value="DF">DF</option>
+							<option value="ES">ES</option>
+							<option value="GO">GO</option>
+							<option value="MA">MA</option>
+							<option value="MG">MG</option>
+							<option value="MS">MS</option>
+							<option value="MT">MT</option>
+							<option value="PA">PA</option>
+							<option value="PB">PB</option>
+							<option value="PE">PE</option>
+							<option value="PI">PI</option>
+							<option value="PR">PR</option>
+							<option value="RJ">RJ</option>
+							<option value="RN">RN</option>
+							<option value="RO">RO</option>
+							<option value="RR">RR</option>
+							<option value="RS">RS</option>
+							<option value="SC">SC</option>
+							<option value="SE">SE</option>
+							<option value="SP">SP</option>
+							<option value="TO">TO</option>
+						</select>
+					</div>
+
+					<div class="wrap-input100 validate-input" >
+						<span class="login100-form">
+							Cidade:
+						</span>
+						<input class="input100 cidade" type="text" name="cidade">
+					</div>
+
+					<div class="wrap-input100 validate-input" >
+						<span class="login100-form">
+							Bairro:
+						</span>
+						<input class="input100 bairro" type="text" name="bairro">
+					</div>
+
+					<div class="wrap-input100 validate-input" >
+						<span class="login100-form">
+							Rua:
+						</span>
+						<input class="input100 rua" type="text" name="rua">
+					</div>
+					<div class="wrap-input100 validate-input" >
+						<span class="login100-form">
+							Número:
+						</span>
+						<input class="input100 numero" type="text" name="numero">
+					</div>
+					<div class="wrap-input100 validate-input" >
+						<span class="login100-form">
+							CEP:
+						</span>
+						<input class="input100 cep" type="text" name="cep">
 					</div>
 
 					<div class="container-login100-form-btn">

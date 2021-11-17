@@ -23,8 +23,8 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <div class="row">
-                <a href="https://www.wrappixel.com/templates/ampleadmin/"
-                                    class="btn d-grid btn-primary text-white" style="height: 10%; width: 15%; margin-left: 10px; margin-bottom: 10px;" target="_blank">
+                <a href="#"
+                                    class="btn d-grid btn-primary text-white btn-cadastro" style="height: 10%; width: 15%; margin-left: 10px; margin-bottom: 10px;">
                                     Adicionar Produto</a>
                     <div class="col-sm-12">
                         <div class="white-box">
@@ -101,6 +101,32 @@
                 <!-- End Right sidebar -->
                 <!-- ============================================================== -->
             </div>
+
+            <div class="modal fade" id="modal-turmas" style="background-color: rgba(0,0,0,0.5);" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabe2l">Cadastro Nova Turma</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body message-modal" style="color: black">
+                                    <form>
+                                        <div class="form-group turma-document-div">
+                                            <label for="turma-document" class="col-form-label">Turma:</label>
+                                            <input type="text" class="form-control turma" id="turma">
+                                        </div>
+                                    </form>
+                                    <br>
+                                </div>
+                                <div class="modal-footer">
+                                    <br>
+                                    <button type="button" class="btn btn-primary btn-fill btn-add-turma" style="cursor: pointer;">Adicionar</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
@@ -141,3 +167,10 @@
 </body>
 
 </html>
+<script>
+        $(".btn-cadastro").click(function(e){
+            alert("ff")
+            $('#modal-turmas').modal('show');
+            
+        })
+</script>

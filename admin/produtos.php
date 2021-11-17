@@ -229,7 +229,7 @@
     })
 
     function loadTable(){
-        
+
     }
 
     $(".btn-add-produto").click(function(e){
@@ -297,7 +297,11 @@
             method: 'POST',
             type: 'POST', // For jQuery < 1.9
             success: function(data){
-                // alert(data);
+                 if(data == "true"){
+                    alert("Salvo com sucesso!")
+                 }else{
+                    alert("Erro ao salvar produto!")
+                 }
             }
         });
         

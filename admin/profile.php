@@ -43,28 +43,15 @@
                 <div class="row">
                     <!-- Column -->
                     <div class="col-lg-4 col-xlg-3 col-md-12">
-                        <div class="white-box">
-                            <div class="user-bg"> <img width="100%" alt="user" src="plugins/images/large/img1.jpg">
-                                <div class="overlay-box">
+                       
+                                
                                     <div class="user-content">
                                         <a href="javascript:void(0)"><img src="plugins/images/users/genu.jpg"
                                                 class="thumb-lg img-circle" alt="img"></a>
-                                        <h4 class="text-white mt-2">User Name</h4>
-                                        <h5 class="text-white mt-2">info@myadmin.com</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="user-btm-box mt-5 d-md-flex">
-                                <div class="col-md-4 col-sm-4 text-center">
-                                    <h1>258</h1>
-                                </div>
-                                <div class="col-md-4 col-sm-4 text-center">
-                                    <h1>125</h1>
-                                </div>
-                                <div class="col-md-4 col-sm-4 text-center">
-                                    <h1>556</h1>
-                                </div>
-                            </div>
+                                        <h4 class="text-black mt-2">User Name</h4>
+                                        <h5 class="text-black mt-2">info@myadmin.com</h5>
+                                
+                        
                         </div>
                     </div>
                     <!-- Column -->

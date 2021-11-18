@@ -5,7 +5,7 @@
 		<input class="pesquisa" placeholder="Busco por"></input>
 		<span class="links">
 			<a href="#">Contatos</a>
-			<a href="#">Carrinho</a>
+			<a href="#" class="carrinho" onclick="openNav()" >Carrinho</a>
 		</span>
 	</div>
 	<div id="head-links">

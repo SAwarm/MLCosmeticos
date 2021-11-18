@@ -209,7 +209,11 @@
 				method: 'POST',
 				type: 'POST',
 				success: function(data){
-					
+					if(data == "true"){
+						alert("Cadastrado com sucesso!")
+					}else{
+						alert("Erro ao cadastrar cliente!")
+					}
 				}
         	});
 		}

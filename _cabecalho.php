@@ -4,7 +4,7 @@
 		<a href="/"><img src="logo.png" alt="logo" height="100px" width="100%"></a>
 		<input class="pesquisa" placeholder="Busco por"></input>
 		<span class="links">
-			<a href="#">Contatos</a>
+			<a href="#" class="contato">Contatos</a>
 			<a href="#" class="carrinho" onclick="openNav()" >Carrinho</a>
 		</span>
 	</div>
@@ -21,7 +21,7 @@
 					<a href="/rosto/bronzer.php">Bronzer e iluminador</a>
 					<a href="/rosto/paletas.php">Paletas</a>
 					<a href="/rosto/kit.php">Kit combo base e corretivo feels</a>
-				</div>	
+				</div>
 			</li>
 			<li>
 				<a href="/labios.php">lábios</a>

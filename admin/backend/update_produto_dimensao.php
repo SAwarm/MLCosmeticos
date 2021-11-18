@@ -22,7 +22,7 @@
 
         $sql = "UPDATE produto SET imagem='$new_name' where cod='$id_produto'";
 
-        mysqli_query($connection, $sqlUpdate);
+        mysqli_query($connection, $sql);
     }
 
     $sqlUpdateProduto = "UPDATE produto SET nome='$nome', descricao='$descricao', preco='$preco', cor='$cor', marca='$marca',

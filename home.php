@@ -2,21 +2,35 @@
 <html>
 <head lang="pt-br">
 	<meta charset="utf-8"/>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 	<title>MA & La Cosméticos</title>
 	<link rel="stylesheet" href="res/css/style.css"/>
 	<script src="/res/js/lib/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
 	<script src="res/scripts.js"></script>
 	<script>
 		function main(){
-			createCard("prod1.png", "alguma coisa cara");
-			createCard("prod2.jpg", "alguma coisa pra olho");
-			createCard("prod3.jpg", "um sabonete ai");
-			createCard("prod4.jpg", "um gel topzeira");
+			//createCard("prod1.png", "alguma coisa cara");
+			//createCard("prod2.jpg", "alguma coisa pra olho");
+			//createCard("prod3.jpg", "um sabonete ai");
+			//createCard("prod4.jpg", "um gel topzeira");
 		}
 	</script>
 	<style>
+	a:hover {
+		color: black;
+	}
 		body {
 			font-family: "Lato", sans-serif;
+		}
+
+		.btn-adicionar-produto{
+			background: hsl(25.7, 19.4%, 28.2%);
+			color: white;
+		}
+
+		.btn-adicionar-produto:hover{
+			color: gray;
 		}
 
 		.sidenav {
@@ -67,6 +81,8 @@
 		</div>
 	</div>
 
+
+
 	<header>
 		<?php include '_cabecalho.php';?>
 	</header>
@@ -74,13 +90,51 @@
 		<div id="carrossel">
 			<img src="res/img/carrossel2.jpg"/>
 		</div>
+
 		<div id="produtos">
 			<h1>produtos</h1>
 			<div class="cards">
-				
+			<?php 
+
+			require_once("./backend/connection.php");
+			$sql = "SELECT * from produto LIMIT 4";
+			$result = mysqli_query($connection, $sql);
+
+			while($row = mysqli_fetch_array($result)) {
+				$rows [] = $row;
+			}
+
+			foreach($rows as $value){?>
+				<div class="card" style="width: 18rem; margin-right: 50px;">
+					<img class="card-img-top"  width="300px;" height="300px;" src="admin/backend/imagens/<?php echo $value['imagem']; ?>" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title"><?php echo $value['nome']; ?></h5>
+						<p class="card-text"><?php echo $value['descricao']; ?></p>
+						<a href="#" class="btn btn-adicionar-produto">Adicionar produto ao carrinho</a>
+					</div>
+				</div><?php }?>
 			</div>
 		</div>
 	</main>
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Contato</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			...
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+		</div>
+		</div>
+	</div>
+	</div>
 	<footer>
 		<?php include '_rodape.php';?>
 	</footer>
@@ -89,7 +143,7 @@
 			<img class="foto" src=""/>
 			<span class="desc"></span>
 		</div>
-	</div>	
+	</div>
 	<script src="res/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="res/vendor/animsition/js/animsition.min.js"></script>
@@ -116,8 +170,8 @@
 	function closeNav() {
 		document.getElementById("mySidenav").style.width = "0";
 	}
-	$(".carrinho").click(function(){
-	//	alert("as")
+	$(".contato").click(function(){
+		$('#exampleModal').modal('show');
 	})
 </script>
 

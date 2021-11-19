@@ -185,25 +185,30 @@
             type: 'POST',
             success: function(data){
 				jq_json_obj = $.parseJSON(data);
-                cont = jq_json_obj.length;
-				cols = "";
-				colsPreco = "";
-				precoTotal = 0;
-				var number1 = parseInt('0')
-				//alert(jq_json_obj);
-				for (x = 0; x < cont; x++){
-					cols += '<span><img src="admin/backend/imagens/'+jq_json_obj[x]['imagem']+'" width="50px;" height="50px;" style="margin: 5px;"> '
-					+''+jq_json_obj[x]['nome']+' <button class="btn" style="margin-left: 5px; margin-right: 5px;" data-id="'+jq_json_obj[x]['cod']+'">+</button>' +
-					'<button class="btn" style="margin-right: 15px;" data-id="'+jq_json_obj[x]['cod']+'">-</button>'+
-					'<input class="pesquisa value'+jq_json_obj[x]['cod_produto']+'" placeholder="" style="width: 40px; height: 40px;" disabled value='+jq_json_obj[x]['quantidade']+'></span>';
-					$(".add-carrinho").html(cols);
+					cols = "";
+					colsPreco = "";
+				if(jq_json_obj != null){
+					cont = jq_json_obj.length;
+					precoTotal = 0;
+					var number1 = parseInt('0')
+					//alert(jq_json_obj);
+					for (x = 0; x < cont; x++){
+						cols += '<span><img src="admin/backend/imagens/'+jq_json_obj[x]['imagem']+'" width="50px;" height="50px;" style="margin: 5px;"> '
+						+''+jq_json_obj[x]['nome']+' <button class="btn btn-acao-carrinho" style="margin-left: 5px; margin-right: 5px;" data-id="'+jq_json_obj[x]['cod']+'">+</button>' +
+						'<button class="btn btn-acao-carrinho" style="margin-right: 15px;" data-id="'+jq_json_obj[x]['cod']+'">-</button>'+
+						'<input class="pesquisa value'+jq_json_obj[x]['cod_produto']+'" placeholder="" style="width: 40px; height: 40px;" disabled value='+jq_json_obj[x]['quantidade']+'></span>';
+						$(".add-carrinho").html(cols);
 
-					preco = parseInt(jq_json_obj[x]['preco'])
-					number1 += preco * $('.value'+jq_json_obj[x]['cod_produto']).val();
-                }
-				colsPreco += '<span style="color: white">Total: <span style="color: white;">'+number1+'R$</span>'+
-					'<button class="btn" style="margin: 10px;">Finalizar Compra</button></span></div>';
-				$('.compra-pedido').html(colsPreco)
+						preco = parseInt(jq_json_obj[x]['preco'])
+						number1 += preco * $('.value'+jq_json_obj[x]['cod_produto']).val();
+					}
+					colsPreco += '<span style="color: white">Total: <span style="color: white;">'+number1+'R$</span>'+
+						'<button class="btn" style="margin: 10px;">Finalizar Compra</button></span></div>';
+					$('.compra-pedido').html(colsPreco)
+				}else{
+					$(".add-carrinho").html("<h4>Nenhum produto adicionado ao carrinho</h4>");
+					$('.compra-pedido').html(colsPreco)
+				}
             }
         });
 	}
@@ -223,12 +228,10 @@
 		update = false;
 		if ($('.value'+id)[0]){
 			if($('.value'+id).val() != ""){
-				update = true;
-				alert("true")
+				update = "true";
 			}
 		} else {
-			alert("false")
-			update = "";
+			update = "false";
 		}
 		$.ajax({
             url: 'backend/carrinho.php',
@@ -240,5 +243,20 @@
             }
         });
 	})
+
+	$(document).on('click','.btn-acao-carrinho', function(){
+		id = $(this).attr('data-id')
+		action = $(this).html()
+		$.ajax({
+            url: 'backend/update_carrinho.php',
+            data: {id: id, action: action},
+            method: 'POST',
+            type: 'POST',
+            success: function(data){
+				loadCarrinho();
+            }
+        });
+	})
+
 </script>
 

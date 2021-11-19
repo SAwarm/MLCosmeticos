@@ -106,11 +106,11 @@
 
 			foreach($rows as $value){?>
 				<div class="card" style="width: 18rem; margin-right: 50px;">
-					<img class="card-img-top"  width="300px;" height="300px;" src="admin/backend/imagens/<?php echo $value['imagem']; ?>" alt="Card image cap">
+					<img class="card-img-top"  width="300px;" height="450px;" src="admin/backend/imagens/<?php echo $value['imagem']; ?>" alt="Card image cap">
 					<div class="card-body">
 						<h5 class="card-title"><?php echo $value['nome']; ?></h5>
 						<p class="card-text"><?php echo $value['descricao']; ?></p>
-						<a href="#" class="btn btn-adicionar-produto">Adicionar produto ao carrinho</a>
+						<a href="#" data-id="<?php echo $value['cod']; ?>" class="btn btn-adicionar-produto">Adicionar produto ao carrinho</a>
 					</div>
 				</div><?php }?>
 			</div>
@@ -163,6 +163,21 @@
 </html>
 
 <script>
+	$(document).ready(function() {
+        loadCarrinho();
+    });
+
+	function loadCarrinho(){
+		$.ajax({
+            url: 'backend/select_carrinho.php',
+            method: 'POST',
+            type: 'POST',
+            success: function(data){
+				
+            }
+        });
+	}
+
 	function openNav() {
 		document.getElementById("mySidenav").style.width = "250px";
 	}
@@ -172,6 +187,18 @@
 	}
 	$(".contato").click(function(){
 		$('#exampleModal').modal('show');
+	})
+	$('.btn-adicionar-produto').click(function(){
+		id = $(this).attr('data-id');
+		$.ajax({
+            url: 'backend/carrinho.php',
+            data: {id_produto: id},
+            method: 'POST',
+            type: 'POST',
+            success: function(data){
+
+            }
+        });
 	})
 </script>
 

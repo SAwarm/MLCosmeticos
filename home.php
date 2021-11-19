@@ -93,7 +93,7 @@
 	</div>
 
 
-
+		<div class="qrcode"></div>
 	<header>
 		<?php include '_cabecalho.php';?>
 	</header>
@@ -116,7 +116,7 @@
 			}
 
 			foreach($rows as $value){?>
-				<div class="card" style="width: 18rem; margin-right: 50px;">
+				<div class="card" style="width: 18rem; margin-right: 50px; margin-bottom: 30px;">
 					<img class="card-img-top"  width="300px;" height="450px;" src="admin/backend/imagens/<?php echo $value['imagem']; ?>" alt="Card image cap">
 					<div class="card-body">
 						<h5 class="card-title"><?php echo $value['nome']; ?></h5>
@@ -203,7 +203,7 @@
 						number1 += preco * $('.value'+jq_json_obj[x]['cod_produto']).val();
 					}
 					colsPreco += '<span style="color: white">Total: <span style="color: white;">'+number1+'R$</span>'+
-						'<button class="btn" style="margin: 10px;">Finalizar Compra</button></span></div>';
+						'<button class="btn finalizarCompra" style="margin: 10px;">Finalizar Compra</button></span></div>';
 					$('.compra-pedido').html(colsPreco)
 				}else{
 					$(".add-carrinho").html("<h4>Nenhum produto adicionado ao carrinho</h4>");
@@ -256,6 +256,25 @@
 				loadCarrinho();
             }
         });
+	})
+
+	$(document).on('click', '.finalizarCompra', function(){
+		$.ajax({
+            url: 'GerarPix/index.php',
+            method: 'GET',
+            type: 'POST',
+            success: function(data){
+				//loadCarrinho();
+				$('.qrcode').html(data)
+            }
+        });
+
+		/*$.ajax({
+			type: "GET",
+			url: "GerarPix/index.php",
+			dataType: "image/jpg",
+			cache: true
+		});*/
 	})
 
 </script>

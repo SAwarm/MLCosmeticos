@@ -1,7 +1,7 @@
 <nav>
 	<div id="anuncio"></div>
 	<div id="head">
-		<a href="/"><img src="logo.png" alt="logo" height="100px" width="100%"></a>
+		<a href="/"><img src="logo.png" alt="logo" class="rounded" height="80px" style="margin-left: 10px;" width="90%"></a>
 		<input class="pesquisa" placeholder="Busco por"></input>
 		<span class="links">
 			<a href="#" class="contato">Contatos</a>

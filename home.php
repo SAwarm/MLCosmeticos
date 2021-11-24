@@ -203,7 +203,7 @@
 						number1 += preco * $('.value'+jq_json_obj[x]['cod_produto']).val();
 					}
 					colsPreco += '<span style="color: white">Total: <span style="color: white;">'+number1+'R$</span>'+
-						'<button class="btn finalizarCompra" style="margin: 10px;">Finalizar Compra</button></span></div>';
+						'<button data-preco="'+number1+'.00" class="btn finalizarCompra" style="margin: 10px;">Finalizar Compra</button></span></div>';
 					$('.compra-pedido').html(colsPreco)
 				}else{
 					$(".add-carrinho").html("<h4>Nenhum produto adicionado ao carrinho</h4>");
@@ -259,8 +259,10 @@
 	})
 
 	$(document).on('click', '.finalizarCompra', function(){
+		preco = $(this).attr('data-preco');
 		$.ajax({
             url: 'GerarPix/index.php',
+			data: {preco: preco},
             method: 'GET',
             type: 'POST',
             success: function(data){

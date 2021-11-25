@@ -1,5 +1,5 @@
     <!DOCTYPE html>
-    <html dir="ltr" lang="en">
+    <html dir="ltr" lang="pt-br">
     
     <head>
         <meta charset="utf-8">
@@ -104,13 +104,6 @@
                     <nav class="sidebar-nav">
                         <ul id="sidebarnav">
                             <!-- User Profile-->
-                            <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.php"
-                                    aria-expanded="false">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                    <span class="hide-menu">Perfil</span>
-                                </a>
-                            </li>
                             <li class="sidebar-item">
                                 <a class="sidebar-link waves-effect waves-dark sidebar-link" href="produtos.php"
                                     aria-expanded="false">

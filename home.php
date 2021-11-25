@@ -147,7 +147,7 @@
 	</div>
 	</div>
 	<footer>
-		<?php include '_rodape.php';?>
+		<?php include 'footer.php';?>
 	</footer>
 	<div id="template_card" class="template">
 		<div class="card-produto">

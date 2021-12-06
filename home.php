@@ -160,7 +160,7 @@
 			<h4>Pagamento dos produtos adicionados ao carrinho</h4>
 				<div class="qrcode" ></div>
 				<div style="margin-left: 80px;">
-					<button type="button" class="btn btn-secondary btn-pago" style="background-color: green;" data-dismiss="modal">Pago</button>
+					<button type="button" class="btn btn-secondary btn-pago" style="background-color: green;">Pago</button>
 					<a href="https://api.whatsapp.com/send?phone=5519999999999&text=Texto%20aqui" type="button" class="btn btn-secondary btn-whats">Outra forma de pagamento</a>
 				</div>
 			</div>
@@ -246,7 +246,7 @@
 						number1 += preco * $('.value'+jq_json_obj[x]['cod_produto']).val();
 					}
 					colsPreco += '<span style="color: white">Total: <span style="color: white;">'+number1+'R$</span>'+
-						'<button data-preco="'+number1+'.00" class="btn finalizarCompra" style="margin: 10px;">Finalizar Compra</button></span></div>';
+						'<button data-preco="'+number1+'.00" data-carrinho="'+jq_json_obj[0]['cod_cliente']+'" class="btn finalizarCompra" style="margin: 10px;">Finalizar Compra</button></span></div>';
 					$('.compra-pedido').html(colsPreco)
 				}else{
 					$(".add-carrinho").html("<h4>Nenhum produto adicionado ao carrinho</h4>");
@@ -324,18 +324,23 @@
 	})
 
 	$(document).on('click', '.btn-pago', function(){
-		$('#modalExample3').modal('show');
+		$('#exampleModal3').modal('show');
 	})
 
 	$(document).on('click', '.btn-confirm-pagamento', function(){
+		id = $('.finalizarCompra').attr('data-carrinho');
 		$.ajax({
             url: 'backend/confirm_pagamento.php',
-			data: {preco: preco},
-            method: 'GET',
-            type: 'POST',
+			data: {id: id},
+            method: 'POST',
             success: function(data){
-				alert('Obrigado por comprar!');
-				
+				if(data == "true"){
+					$('#exampleModal3').modal('hide');
+					$('#exampleModal2').modal('hide');
+					alert("Obrigado por comprar!");
+				}else{
+					alert("Erro ao finalizar a compra");
+				}
             }
         });
 	})

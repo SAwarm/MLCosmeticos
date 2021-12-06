@@ -93,7 +93,7 @@
 	</div>
 
 
-		<div class="qrcode"></div>
+		
 	<header>
 		<?php include '_cabecalho.php';?>
 	</header>
@@ -129,22 +129,65 @@
 	</main>
 
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-		<div class="modal-header">
-			<h5 class="modal-title" id="exampleModalLabel">Contato</h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		<div class="modal-body">
-			...
-		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-		</div>
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Contato</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+			</div>
+			</div>
 		</div>
 	</div>
+
+	<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Pagamento</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+			<h4>Pagamento dos produtos adicionados ao carrinho</h4>
+				<div class="qrcode" ></div>
+				<div style="margin-left: 80px;">
+					<button type="button" class="btn btn-secondary btn-pago" style="background-color: green;" data-dismiss="modal">Pago</button>
+					<a href="https://api.whatsapp.com/send?phone=5519999999999&text=Texto%20aqui" type="button" class="btn btn-secondary btn-whats">Outra forma de pagamento</a>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+			</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Pagamento</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+			<h4>Tem certeza que o pagamento já foi feito?</h4>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary btn-confirm-pagamento">Sim</button>
+			</div>
+			</div>
+		</div>
 	</div>
 	<footer>
 		<?php include 'footer.php';?>
@@ -267,6 +310,7 @@
             type: 'POST',
             success: function(data){
 				//loadCarrinho();
+				$('#exampleModal2').modal('show');
 				$('.qrcode').html(data)
             }
         });
@@ -277,6 +321,23 @@
 			dataType: "image/jpg",
 			cache: true
 		});*/
+	})
+
+	$(document).on('click', '.btn-pago', function(){
+		$('#modalExample3').modal('show');
+	})
+
+	$(document).on('click', '.btn-confirm-pagamento', function(){
+		$.ajax({
+            url: 'backend/confirm_pagamento.php',
+			data: {preco: preco},
+            method: 'GET',
+            type: 'POST',
+            success: function(data){
+				alert('Obrigado por comprar!');
+				
+            }
+        });
 	})
 
 </script>

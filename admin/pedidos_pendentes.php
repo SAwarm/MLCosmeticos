@@ -23,67 +23,26 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <div class="row">
-                <a href="https://www.wrappixel.com/templates/ampleadmin/"
+                <!-- <a href="https://www.wrappixel.com/templates/ampleadmin/"
                                     class="btn d-grid btn-primary text-white" style="height: 10%; width: 15%; margin-left: 10px; margin-bottom: 10px;" target="_blank">
-                                    Adicionar Produto</a>
+                                    Adicionar Produto</a> -->
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">Basic Table</h3>
-                            <p class="text-muted">Add class <code>.table</code></p>
+                            <h3 class="box-title">Pedidos Pendentes</h3>
+                            <!-- <p class="text-muted">Add class <code>.table</code></p> -->
                             <div class="table-responsive">
                                 <table class="table text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">#</th>
-                                            <th class="border-top-0">First Name</th>
-                                            <th class="border-top-0">Last Name</th>
-                                            <th class="border-top-0">Username</th>
-                                            <th class="border-top-0">Role</th>
+                                            <th class="border-top-0">Id</th>
+                                            <th class="border-top-0">Data pagamento</th>
+                                            <th class="border-top-0">Hora pagamento</th>
+                                            <th class="border-top-0">Cliente solicitante</th>
+                                            <th class="border-top-0">Telefone Cliente</th>
+                                            <th class="border-top-0">Opções</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Deshmukh</td>
-                                            <td>Prohaska</td>
-                                            <td>@Genelia</td>
-                                            <td>admin</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Deshmukh</td>
-                                            <td>Gaylord</td>
-                                            <td>@Ritesh</td>
-                                            <td>member</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Sanghani</td>
-                                            <td>Gusikowski</td>
-                                            <td>@Govinda</td>
-                                            <td>developer</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Roshan</td>
-                                            <td>Rogahn</td>
-                                            <td>@Hritik</td>
-                                            <td>supporter</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Joshi</td>
-                                            <td>Hickle</td>
-                                            <td>@Maruti</td>
-                                            <td>member</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>Nigam</td>
-                                            <td>Eichmann</td>
-                                            <td>@Sonu</td>
-                                            <td>supporter</td>
-                                        </tr>
+                                    <tbody class="reloadTable">
                                     </tbody>
                                 </table>
                             </div>
@@ -139,5 +98,51 @@
     <!--Custom JavaScript -->
     <script src="js/custom.js"></script>
 </body>
+
+<script>
+
+    $(document).ready(function() {
+        reloadTable();
+    });
+
+    function reloadTable(){
+        $.ajax({
+            url: 'backend/select_pedidos_pendentes.php',
+            method: 'POST',
+            success: function(data){
+                cols = "";
+                 if(data != "null"){
+
+                    jq_json_obj = $.parseJSON(data);
+                    cont = jq_json_obj.length
+                    for (x = 0; x < cont; x++){
+                        cols += '<tr><td scope="row">'+jq_json_obj[x][0]+'</td>';
+                        cols += '<td>'+jq_json_obj[x][3]+'</td>';
+                        cols += '<td>'+jq_json_obj[x][4]+'</td>';
+                        cols += '<td>'+jq_json_obj[x]['telefone']+'</td>';
+                        cols += '<td>'+jq_json_obj[x]['nome']+'</td>';
+                        cols += '<td>'+
+                        '<a type="button" href="#" data-id="'+jq_json_obj[x][0]+'" id="btn-confirm-produto" style="margin-right: 10px;" class="btn btn-success btn-confirm-produto"><i class="far fa-check-circle"></i></a>'+
+                       '</td></tr>';
+                        $(".reloadTable").html(cols);
+                    }
+                 }else{
+                     alert("erro");
+                 }
+            }
+        });
+    }
+
+    $(document).on('click','.btn-confirm-produto', function(){
+        $.ajax({
+            url: 'backend/confirm_compra.php',
+            method: 'POST',
+            success: function(data){
+                
+            }
+        });
+    })
+
+</script>
 
 </html>

@@ -167,7 +167,7 @@
                     }
                    
                  }else{
-                     alert("erro");
+                     alert("Nenhum registro retornado");
                  }
             }
         });

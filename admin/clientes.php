@@ -121,7 +121,7 @@
                         $(".reloadTable").html(cols);
                     }
                  }else{
-                     alert("erro");
+                    alert("Nenhum registro retornado");
                  }
             }
         });

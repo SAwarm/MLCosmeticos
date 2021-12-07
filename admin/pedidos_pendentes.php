@@ -77,6 +77,56 @@
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
     </div>
+    <div class="modal fade" id="modal-exclusao" style="background-color: rgba(0,0,0,0.5);" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabe2l">Excluir Compra</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body message-modal" style="color: black">
+                <form>
+                    <div class="form-group turma-document-div">
+                        <h5 class="modal-title" id="exampleModalLabe2l">Deseja realmente a compra?</h5>
+                    </div>
+                </form>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <br>
+                <button type="button" class="btn btn-danger btn-fill btn-exclude-modal" style="cursor: pointer;">Excluir</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalMsg" style="background-color: rgba(0,0,0,0.5);" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabe2l">Compra Pendente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body message-modal" style="color: black">
+                <form>
+                    <div class="form-group turma-document-div">
+                        <h5 class="modal-title" id="exampleModalLabe2l">Deseja realmente aprovar a compra?</h5>
+                    </div>
+                </form>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <br>
+                <button type="button" class="btn btn-success btn-fill btn-confirm-produto-modal" style="cursor: pointer;">Sim</button>
+                <!-- <button type="button" class="btn btn-default" style="color: black;" data-dismiss="modal" style="cursor: pointer;">Fechar</button> -->
+            </div>
+            </div>
+        </div>
+    </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
@@ -123,6 +173,7 @@
                         cols += '<td>'+jq_json_obj[x]['nome']+'</td>';
                         cols += '<td>'+
                         '<a type="button" href="#" data-id="'+jq_json_obj[x][0]+'" id="btn-confirm-produto" style="margin-right: 10px;" class="btn btn-success btn-confirm-produto"><i class="far fa-check-circle"></i></a>'+
+                       '<a type="button" href="#" data-id="'+jq_json_obj[x][0]+'" id="btn-exclude" style="margin-right: 10px;" class="btn btn-danger btn-exclude"><i class="far fa-times-circle"></i></a>'+
                        '</td></tr>';
                         $(".reloadTable").html(cols);
                     }
@@ -134,8 +185,28 @@
     }
 
     $(document).on('click','.btn-confirm-produto', function(){
+        $('#modalMsg').modal('show');
+    })
+
+    $(document).on('click','.btn-confirm-produto-modal', function(){
         $.ajax({
             url: 'backend/confirm_compra.php',
+            data: {id:id},
+            method: 'POST',
+            success: function(data){
+                
+            }
+        });
+    })
+
+    $(document).on('click','.btn-exclude', function(){
+        $('#modal-exclusao').modal('show');
+    })
+
+    $(document).on('click','.btn-exclude-modal', function(){
+        $.ajax({
+            url: 'backend/exclude_compra.php',
+            data: {id:id},
             method: 'POST',
             success: function(data){
                 

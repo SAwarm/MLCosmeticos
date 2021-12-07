@@ -122,7 +122,7 @@
 			<h1>
 			</div>
 			
-			<img class="img" style="width: 50%; margin: 40px;" src="admin/backend/imagens/2021.11.24-21.12.49.png ?>" alt="Card image cap">
+			<img class="img" style="width: 50%; margin: 40px;" src="admin/backend/imagens/<?php echo $rows[0]['imagem'];  ?>" alt="Card image cap">
 			<?php echo $rows[0]['obs']; ?>
 			<a style="margin-left: 10px;" href="#" data-id="<?php echo $rows[0]['cod']; ?>" class="btn btn-adicionar-produto">Adicionar produto ao carrinho</a>
 		</div>

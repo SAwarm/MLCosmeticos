@@ -23,67 +23,26 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <div class="row">
-                <a href="#"
+                <!-- <a href="#"
                                     class="btn d-grid btn-primary text-white btn-cadastro" style="height: 10%; width: 15%; margin-left: 10px; margin-bottom: 10px;">
-                                    Adicionar Produto</a>
+                                    Adicionar Produto</a> -->
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">Basic Table</h3>
-                            <p class="text-muted">Add class <code>.table</code></p>
+                            <h3 class="box-title">Compras aprovadas</h3>
+                            <!-- <p class="text-muted">Add class <code>.table</code></p> -->
                             <div class="table-responsive">
                                 <table class="table text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">#</th>
-                                            <th class="border-top-0">First Name</th>
-                                            <th class="border-top-0">Last Name</th>
-                                            <th class="border-top-0">Username</th>
-                                            <th class="border-top-0">Role</th>
+                                            <th class="border-top-0">Id Compra</th>
+                                            <th class="border-top-0">Data Pedido</th>
+                                            <th class="border-top-0">Hora Pedido</th>
+                                            <th class="border-top-0">Nome Cliente</th>
+                                            <th class="border-top-0">Telefone</th>
+                                            <th class="border-top-0">Valor</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Deshmukh</td>
-                                            <td>Prohaska</td>
-                                            <td>@Genelia</td>
-                                            <td>admin</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Deshmukh</td>
-                                            <td>Gaylord</td>
-                                            <td>@Ritesh</td>
-                                            <td>member</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Sanghani</td>
-                                            <td>Gusikowski</td>
-                                            <td>@Govinda</td>
-                                            <td>developer</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Roshan</td>
-                                            <td>Rogahn</td>
-                                            <td>@Hritik</td>
-                                            <td>supporter</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Joshi</td>
-                                            <td>Hickle</td>
-                                            <td>@Maruti</td>
-                                            <td>member</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>Nigam</td>
-                                            <td>Eichmann</td>
-                                            <td>@Sonu</td>
-                                            <td>supporter</td>
-                                        </tr>
+                                    <tbody class="reloadTable">
                                     </tbody>
                                 </table>
                             </div>
@@ -168,9 +127,50 @@
 
 </html>
 <script>
-        $(".btn-cadastro").click(function(e){
-            alert("ff")
-            $('#modal-turmas').modal('show');
-            
-        })
+
+    $(document).ready(function() {
+        reloadTable();
+    });
+
+    function reloadTable(){
+        $.ajax({
+            url: 'backend/select_pedidos_confirmados.php',
+            method: 'POST',
+            success: function(data){
+                cols = "";
+                 if(data != "null"){
+                    var number = 0;
+                    var preco = 0;
+                    jq_json_obj = $.parseJSON(data);
+                    cont = jq_json_obj.length
+                    for (x = 0; x < cont; x++){
+                        cols += '<tr><td scope="row">'+jq_json_obj[x][0]+'</td>';
+                        cols += '<td>'+jq_json_obj[x][4]+'</td>';
+                        cols += '<td>'+jq_json_obj[x][3]+'</td>';
+                        cols += '<td>'+jq_json_obj[x][16]+'</td>';
+                        cols += '<td>'+jq_json_obj[x]['telefone']+'</td>';
+                        number = jq_json_obj[x][31];
+
+                        if(number.indexOf(",") != -1){
+                            number = number.split(',');
+
+                            for(i = 0; i<number.length; i++){
+                                preco += parseInt(number[i]);
+                            }
+                            cols += '<td>'+preco+'.00</td></tr>';
+                        }else{
+                            cols += '<td>'+number+'</td></tr>';
+                        }
+                        
+                        // cols += '<td>'+jq_json_obj[x]['bairro']+'</td></tr>';
+                        $(".reloadTable").html(cols);
+                    }
+                   
+                 }else{
+                     alert("erro");
+                 }
+            }
+        });
+    }
+
 </script>

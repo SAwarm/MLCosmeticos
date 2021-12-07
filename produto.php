@@ -98,35 +98,38 @@
 		<?php include '_cabecalho.php';?>
 	</header>
 	<main>
-		<div id="carrossel">
-			<img src="res/img/carrossel2.jpg"/>
-		</div>
-
-		<div id="produtos">
-			<h1>produtos</h1>
-			<div class="cards">
-			<?php 
-
-			require_once("./backend/connection.php");
-			$sql = "SELECT * from produto LIMIT 4";
+		
+		<?php 
+		
+			
+			require_once('./backend/connection.php');
+			$id = $_GET['id'];
+			$sql = "SELECT * FROM produto where cod='$id' LIMIT 1";
 			$result = mysqli_query($connection, $sql);
-
 			while($row = mysqli_fetch_array($result)) {
 				$rows [] = $row;
 			}
-
-			foreach($rows as $value){?>
-				<div class="card" style="width: 18rem; margin-right: 50px; margin-bottom: 30px;">
-					<img class="card-img-top"  width="300px;" height="450px;" src="admin/backend/imagens/<?php echo $value['imagem']; ?>" alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title"><?php echo $value['nome']; ?></h5>
-						<p class="card-text"><?php echo $value['descricao']; ?></p>
-						<a href="#" data-id="<?php echo $value['cod']; ?>" class="btn btn-adicionar-produto">Adicionar produto ao carrinho</a>
-					</div>
-				</div><?php }?>
+			
+				//print_r($rows[$i]['nome']);
+			
+			
+		
+		?>
+		<div>
+			<div>
+			<h1 style="margin: 40px;">
+			<?php echo $rows[0]['nome']; ?>
+			<h1>
 			</div>
+			
+			<img class="img" style="width: 50%; margin: 40px;" src="admin/backend/imagens/2021.11.24-21.12.49.png ?>" alt="Card image cap">
+			<?php echo $rows[0]['obs']; ?>
+			<a style="margin-left: 10px;" href="#" data-id="<?php echo $rows[0]['cod']; ?>" class="btn btn-adicionar-produto">Adicionar produto ao carrinho</a>
 		</div>
+		<?php  ?>
 	</main>
+
+	
 
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">

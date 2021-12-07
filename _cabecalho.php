@@ -13,14 +13,21 @@
 			<li>
 				<a href="/rosto.php">rosto</a>
 				<div class="menu">
-					<a href="/rosto/base.php">Base</a>
-					<a href="/rosto/po.php">Pó</a>
-					<a href="/rosto/primer.php">Primer facial</a>
-					<a href="/rosto/blush.php">Blush</a>
-					<a href="/rosto/corretivo.php">Corretivo e contorno</a>
-					<a href="/rosto/bronzer.php">Bronzer e iluminador</a>
-					<a href="/rosto/paletas.php">Paletas</a>
-					<a href="/rosto/kit.php">Kit combo base e corretivo feels</a>
+				<?php 
+					require_once('./backend/connection.php');
+					$sql = "SELECT * FROM produto where tipo='rosto'";
+					$result = mysqli_query($connection, $sql);
+					while($row = mysqli_fetch_array($result)) {
+						$rows [] = $row;
+					}
+					for ($i = 0; $i < count($rows); $i++){
+						//print_r($rows[$i]['nome']);
+					
+					  ?>
+
+					
+					<a href="./produto.php?id=<?php echo  $rows[$i]['cod'] ?>"><?php echo  $rows[$i]['nome'] ?></a>
+					<?php }?>
 				</div>
 			</li>
 			<li>

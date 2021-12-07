@@ -186,30 +186,53 @@
 
     $(document).on('click','.btn-confirm-produto', function(){
         $('#modalMsg').modal('show');
+        id = $(this).attr('data-id');
+        $('.btn-confirm-produto-modal').attr('data-id', id)
     })
 
     $(document).on('click','.btn-confirm-produto-modal', function(){
+        id = $(this).attr('data-id');
         $.ajax({
             url: 'backend/confirm_compra.php',
             data: {id:id},
             method: 'POST',
             success: function(data){
-                
+                if(data == "true"){
+                    $('#modalMsg').modal('hide');
+                    reloadTable()
+                    alert("Compra aprovada com sucesso!");
+                }else{
+                    $('#modalMsg').modal('hide');
+                    reloadTable()
+                    alert("Erro ao tentar aprovar compra!");
+                }
             }
         });
     })
 
     $(document).on('click','.btn-exclude', function(){
+        id = $(this).attr('data-id');
+        $('.btn-exclude-modal').attr('data-id', id);
         $('#modal-exclusao').modal('show');
     })
 
     $(document).on('click','.btn-exclude-modal', function(){
+        id = $(this).attr('data-id');
+        alert(id);
         $.ajax({
             url: 'backend/exclude_compra.php',
             data: {id:id},
             method: 'POST',
             success: function(data){
-                
+                if(data == "true"){
+                    $('#modal-exclusao').modal('hide');
+                    reloadTable()
+                    alert("Compra excluída com sucesso!");
+                }else{
+                    $('#modal-exclusao').modal('hide');
+                    reloadTable()
+                    alert("Erro ao tentar excluir compra!");
+                }
             }
         });
     })

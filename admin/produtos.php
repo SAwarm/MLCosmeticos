@@ -296,6 +296,7 @@
                 $('.nome').val(jq_json_obj[0]['nome']);
                 $('.descricao').val(jq_json_obj[0]['descricao']);
                 $('.preco').val(jq_json_obj[0]['preco']);
+                $('#tipo').val(jq_json_obj[0][9]);
                 if(jq_json_obj[0]['imagem'] != ""){
                     $('.imagem-document').html('Alterar imagem');
                 }else{

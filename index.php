@@ -108,7 +108,7 @@
             success: function(data){
                if(data == "admin"){
 					alert("Admin logado com sucesso!");
-					$(location).prop('href', 'admin/index.html')
+					$(location).prop('href', 'admin/produtos.php')
 			   }else if(data == "Logado com sucesso!"){
 					alert(data);
 					$(location).prop('href', 'home.php')

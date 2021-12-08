@@ -35,7 +35,7 @@
                                     <thead>
                                         <tr>
                                             <th class="border-top-0">Id</th>
-                                            <th class="border-top-0">Hora pagamento</th>
+                                            <th class="border-top-0">Horário pagamento</th>
                                             <th class="border-top-0">Data pagamento</th>
                                             <th class="border-top-0">Cliente solicitante</th>
                                             <th class="border-top-0">Telefone Cliente</th>

@@ -6,7 +6,7 @@
     // inner join carrinho on carrinho.cod_pedido = pedido.cod
     // inner join cliente on cliente.cod = carrinho.cod_cliente 
     // inner join produto on produto.cod = carrinho.cod_produto where pedido.obs IS NOT NULL GROUP BY pedido.cod;";
-    $sql = "SELECT *, GROUP_CONCAT(produto.preco)
+    $sql = "SELECT *, GROUP_CONCAT(produto.preco),  GROUP_CONCAT(carrinho.quantidade)
     FROM pedido 
     inner join carrinho on carrinho.cod_pedido = pedido.cod
     inner join cliente on cliente.cod = carrinho.cod_cliente 

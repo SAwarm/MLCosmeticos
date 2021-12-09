@@ -140,7 +140,8 @@
                 cols = "";
                  if(data != "null"){
                     var number = 0;
-                    var preco = 0;
+                    var preco = [];
+                    var resul = 0;
                     jq_json_obj = $.parseJSON(data);
                     cont = jq_json_obj.length
                     for (x = 0; x < cont; x++){
@@ -150,16 +151,21 @@
                         cols += '<td>'+jq_json_obj[x][16]+'</td>';
                         cols += '<td>'+jq_json_obj[x]['telefone']+'</td>';
                         number = jq_json_obj[x][31];
+                        qtd = jq_json_obj[x][32];
 
                         if(number.indexOf(",") != -1){
                             number = number.split(',');
-
+                            qtd = qtd.split(',');
                             for(i = 0; i<number.length; i++){
-                                preco += parseInt(number[i]);
+                                resul += parseInt(number[i] * qtd[i]);
                             }
-                            cols += '<td>'+preco+'.00</td></tr>';
+                           
+                            cols += '<td>'+resul+'.00</td></tr>';
+                            resul = 0;
                         }else{
-                            cols += '<td>'+number+'</td></tr>';
+                            resul = parseInt(qtd * number);
+                            cols += '<td>'+resul.toFixed(2)+'</td></tr>';
+                            resul = 0;
                         }
                         
                         // cols += '<td>'+jq_json_obj[x]['bairro']+'</td></tr>';

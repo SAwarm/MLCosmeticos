@@ -4,7 +4,7 @@
 		<a href="./home.php"><img src="logo.png" alt="logo" class="rounded" height="80px" style="margin-left: 10px;" width="90%"></a>
 		<input class="pesquisa" placeholder="Busco por"></input>
 		<span class="links">
-			<a href="#" class="contato">Contatos</a>
+			<a href="#" class="contato">Contato</a>
 			<a href="#" class="carrinho" onclick="openNav()" >Carrinho</a>
 		</span>
 	</div>

@@ -170,7 +170,7 @@
           <div class="col-sm-12 col-md-6">
             <h6>Sobre nós</h6>
             <p class="text-justify">Sistema para gerenciar
-vendas online de cosméticos da loja MA & LA</p>
+            vendas online de cosméticos da loja MA & LA</p>
           </div>
 
           <div class="col-xs-6 col-md-2">

@@ -138,7 +138,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				
+				<h4>Telefone: (48) 99823-6602</h4>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>

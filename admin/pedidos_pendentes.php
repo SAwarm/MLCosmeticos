@@ -178,6 +178,7 @@
                         $(".reloadTable").html(cols);
                     }
                  }else{
+                    $(".reloadTable").html('');
                     alert("Nenhum registro retornado");
                  }
             }

@@ -211,6 +211,7 @@
 				success: function(data){
 					if(data == "true"){
 						alert("Cadastrado com sucesso!")
+						$(location).prop('href', './index.php')
 					}else{
 						alert("Erro ao cadastrar cliente!")
 					}

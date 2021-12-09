@@ -17,7 +17,7 @@
         VALUES('$bairro', '$cidade', '$rua', '$numero', '$cep', '$estado')";
 
         mysqli_query($conn, $sql);
-        return mysqli_id_insert($conn);
+        return mysqli_insert_id($conn);
     }
 
     $id_endereco = cadastroEndereco($connection, $bairro, $cidade, $rua, $numero, $cep, $estado);
@@ -25,7 +25,7 @@
     $sqlCliente = "INSERT INTO cliente (nome, senha, telefone, email, endereco_cod) VALUES('$nome', '$senha', '$telefone', '$email', '$id_endereco')";
 
     if (mysqli_query($connection, $sqlCliente)){
-        return "true";
+        echo "true";
     }else{
-        return "false";
+        echo "false";
     }
